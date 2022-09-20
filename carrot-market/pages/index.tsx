@@ -5,14 +5,19 @@ const Home: NextPage = () => {
     <div className="bg-slate-400 py-20 px-10 grid gap-10 min-h-screen">
       <div className="bg-white p-6 rounded-3xl shadow-xl">
           <span className="font-semibold text-3xl">Select Item</span>
-          <div className="flex justify-between my-2">
-              <span className="text-gray-500">Grey Chair</span>
-              <span className="font-semibold">$19</span>
-          </div>
-          <div className="flex justify-between">
-              <span className="text-gray-500">Grey Chair</span>
-              <span className="font-semibold">$19</span>
-          </div>
+          <ul>
+              {[1,2,3,4,5].map((i)=>(
+                <div key={i} className="flex justify-between my-2 odd:bg-yellow-50 even:bg-red-50">
+                    <span className="text-gray-500">Grey Chair</span>
+                    <span className="font-semibold">$19</span>
+                </div>
+              ))}
+          </ul>
+          <ul>
+              {['a','b','c',''].map((c,i)=>(
+                  <li className="bg-red-500 py-2 empty:hidden" key={i}>{c}</li>
+              ))}
+          </ul>
           <div className="mt-2 pt-2 border-t-2 flex justify-between">
               <span>total</span>
               <span className="font-semibold">$10</span>
@@ -22,7 +27,8 @@ const Home: NextPage = () => {
           active:bg-yellow-500
           focus:bg-red-500">checkout</div>
       </div>
-      <div className="bg-white overflow-hidden rounded-3xl shadow">
+
+      <div className="bg-white overflow-hidden rounded-3xl shadow group">
           <div className="bg-blue-500 p-6 pb-14">
               <span className="text-white text-2xl">Profile</span>
           </div>
@@ -32,7 +38,7 @@ const Home: NextPage = () => {
                       <span className="text-sm text-gray-500">Orders</span>
                       <span className="font-medium">340</span>
                   </div>
-                  <div className="h-24 w-24 bg-red-400 rounded-full"></div>
+                  <div className="h-24 w-24 bg-red-400 rounded-full group-hover:bg-red-200 transition-colors"></div>
                   <div className="flex flex-col items-center">
                       <span className="text-sm text-gray-500">Spents</span>
                       <span className="font-medium">340</span>
@@ -58,12 +64,9 @@ const Home: NextPage = () => {
               <span className="text-xs text-gray-500">Chair</span>
               <div className="mt-3 mb-5 flex justify-between items-center">
                   <div className="space-x-2">
-                      <button className="w-5 h-4 rounded-full bg-yellow-500"></button>
-                      <button className="w-5 h-4 rounded-full bg-indigo-500"></button>
-                      <button className="w-5 h-4 rounded-full bg-teal-500"></button>
-                      <input type="radio"/>
-                      <input type="radio"/>
-                      <input type="radio"/>
+                      <button className="w-5 h-5 rounded-full bg-yellow-500 focus:ring-2 ring-offset-2 ring-yellow-500 transition"></button>
+                      <button className="w-5 h-5 rounded-full bg-indigo-500 focus:ring-2 ring-offset-2 bg-indigo-500 transition"></button>
+                      <button className="w-5 h-5 rounded-full bg-teal-500 focus:ring-2 ring-offset-2 bg-teal-500 transition"></button>
                   </div>
                   <div className="flex items-center space-x-5">
                       <button className="p-1.5 rounded-lg bg-blue-200 flex justify-center items-center aspect-square w-8 text-gray-500">-</button>
@@ -77,7 +80,44 @@ const Home: NextPage = () => {
               <button className="bg-blue-500 text-center text-white text-xl py-2 px-5">Add to cart</button>
           </div>
       </div>
-      <div className="bg-white p-6 rounded-3xl shadow"></div>
+      <div className="bg-white p-6 rounded-3xl shadow">
+          <form className="flex flex-col space-y-2 bg-blue-500 p-5 focus-within::bg-blue-100">
+              <input type="text" required placeholder="Username" className="required:border-2 border-yellow-500 placeholder-shown:bg-teal-500 placeholder:text-red-500 valid:bg-teal-500"/>
+              <input type="password" required placeholder="password" className="invalid:bg-red-500"/>
+              <input type="submit" value="Login" disabled className="disabled:bg-red-200"/>
+          </form>
+      </div>
+        <div className="bg-white p-6 rounded-3xl shadow">
+            <form className="flex flex-col space-y-2">
+                <input
+                    type="text"
+                    required
+                    placeholder="테스트중"
+                    className="border p-1 border-gray-400 rounded peer"
+                />
+                <span className="hidden peer-invalid:block peer-invalid: text-teal-500">This input is invalid</span>
+                <span className="hidden peer-valid:block peer-invalid:text-red-500">Awesome username</span>
+                <span className="hidden peer-valid:block peer-invalid:text-red-500 peer-hover:text-red-500">Hello</span>
+                <input type="submit" value="Login" className=""/>
+            </form>
+        </div>
+
+        <div className="bg-white flex flex-col space-y-2 p-5">
+            <details>
+                <summary className="select-none cursor-pointer">what is my fav. food</summary>
+                <span>김치</span>
+                <ul className="list-decimal marker:text-teal-500">
+                    <li>hi</li>
+                    <li>hi</li>
+                    <li>hi</li>
+                </ul>
+            </details>
+        </div>
+
+        <div className="bg-white flex flex-col space-y-2 p-5">
+            <input type="file" className="file:border-0 file:rounded-md file:bg-purple-400"/>
+        </div>
+
     </div>
 
   )
