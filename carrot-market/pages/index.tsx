@@ -115,7 +115,11 @@ const Home: NextPage = () => {
         </div>
 
         <div className="bg-white flex flex-col space-y-2 p-5">
-            <input type="file" className="file:border-0 file:rounded-md file:bg-purple-400"/>
+            <input type="file" className="file:cursor-wait file:hover:text-purple-400 file:hover:border file:hover:bg-white file:transition-colors file:border-0 file:rounded-xl file:px-5 file:text-white file:bg-purple-400"/>
+        </div>
+
+        <div className="bg-white flex flex-col space-y-2 p-5">
+            <p className="first-letter:text-7xl first-letter:hover:text-purple-400">안녕하세요 저는 리액트를 배우고있어요.</p>
         </div>
 
     </div>
