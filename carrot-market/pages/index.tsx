@@ -29,7 +29,7 @@ const Home: NextPage = () => {
       </div>
 
       <div className="bg-white overflow-hidden rounded-3xl shadow group">
-          <div className=" p-6 pb-14 xl:pb-40">
+          <div className="bg-blue-500 portrait:bg-indigo-600 p-6 pb-14 xl:pb-40">
               <span className="text-white text-2xl">Profile</span>
           </div>
           <div className="rounded-3xl p-6 bg-white relative -top-5">
