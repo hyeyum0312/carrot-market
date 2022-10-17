@@ -115,7 +115,7 @@ const Home: NextPage = () => {
         <div className="bg-white flex flex-col space-y-2 p-5">
             <details>
                 <summary className="select-none cursor-pointer">what is my fav. food</summary>
-                <span>김치</span>
+                <span className="selection:text-purple-400">김치</span>
                 <ul className="list-decimal marker:text-teal-500">
                     <li>hi</li>
                     <li>hi</li>
