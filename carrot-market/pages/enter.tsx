@@ -19,17 +19,17 @@ export default function Enter() {
                         <button className={cls('pb-4 font-medium border-b-2',method ==='phone'? 'border-b-2 text-orange-400 border-orange-500' : 'border-transparent text-gray-500')} onClick={onPhoneClick}>Phone</button>
                     </div>
                 </div>
-                <form className="flex flex-col">
-                    <label className="text-sm font-medium text-gray-700 mt-3 mb-2">
+                <form className="flex flex-col mt-8">
+                    <label htmlFor="input" className="text-sm font-medium text-gray-700 mt-3 mb-2">
                         {method === "email" ? "Email address" : null}
                         {method === "phone" ? "Phone number" : null}
                     </label>
                     <div className="mt-1">
-                        {method === "email" ? <input type="email" className="appearance-none w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder:gray-400 focus:ring-orange-500 focus:border-orange-500 focus:outline-none " required /> : null}
+                        {method === "email" ? <input id="input" type="email" className="appearance-none w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder:gray-400 focus:ring-orange-500 focus:border-orange-500 focus:outline-none " required /> : null}
                         {method === "phone" ? (
                             <div className="flex rounded-md shadow-sm">
                                 <span className="flex items-center justify-center px-3 rounded-l-md border border-r-0 border-gray-50 text-gray-500 select-none">+82</span>
-                                <input type="number" className="appearance-none w-full px-3 py-3 border border-gray-300 rounded-md rounded-l-none shadow-sm placeholder:gray-400 focus:ring-orange-500 focus:border-orange-500 focus:outline-none " required />
+                                <input id="input" type="number" className="appearance-none w-full px-3 py-3 border border-gray-300 rounded-md rounded-l-none shadow-sm placeholder:gray-400 focus:ring-orange-500 focus:border-orange-500 focus:outline-none " required />
                             </div>
                         ) : null}
                     </div>
