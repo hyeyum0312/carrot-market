@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import {useState} from "react";
 
 const Edit: NextPage = () => {
-
     return (
         <div className="py-10 px-4">
             <div className="flex items-center space-x-3">
