@@ -30,25 +30,28 @@ export default function Layout({
             >
                 {canGoBack ? (
                     <button onClick={onClick}>
-                        <svg
-                            className="w-6 h-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M15 19l-7-7 7-7"
-                            ></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
                         </svg>
+                        {/*<svg*/}
+                        {/*    className="w-6 h-6"*/}
+                        {/*    fill="none"*/}
+                        {/*    stroke="currentColor"*/}
+                        {/*    viewBox="0 0 24 24"*/}
+                        {/*    xmlns="http://www.w3.org/2000/svg"*/}
+                        {/*>*/}
+                        {/*    <path*/}
+                        {/*        strokeLinecap="round"*/}
+                        {/*        strokeLinejoin="round"*/}
+                        {/*        strokeWidth="2"*/}
+                        {/*        d="M15 19l-7-7 7-7"*/}
+                        {/*    ></path>*/}
+                        {/*</svg>*/}
                     </button>
                 ) : null}
                 {title ? <span>{title}</span> : null}
             </div>
-            <div className={cls("pt-12", hasTabBar ? "pb-24" : "")}>{children}</div>
+            <div className={cls("pt-14", hasTabBar ? "pb-24" : "")}>{children}</div>
             {hasTabBar ? (
                 <nav className="bg-white max-w-xl text-gray-700 border-t fixed bottom-0 w-full px-10 pb-5 pt-3 flex justify-between text-xs">
                     <Link href="/">
@@ -86,10 +89,10 @@ export default function Layout({
                                     d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
                                 ></path>
                             </svg>
-                            <span>동내생활</span>
+                            <span>동네생활</span>
                         </a>
                     </Link>
-                    <Link href="/chats">
+                    <Link href="/chats/index">
                         <a className="flex flex-col items-center space-y-2">
                             <svg
                                 className="w-6 h-6"
