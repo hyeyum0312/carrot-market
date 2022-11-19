@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Layout from "../../components/layout";
 const Index: NextPage = () => {
     return (
-        <Layout title="나의캐럿">
+        <Layout title="나의캐럿" hasTabBar>
             <div className="py-10 px-4">
                 <div className="flex items-center space-x-3">
                     <div className="w-16 h-16 bg-slate-500 rounded-full" />
@@ -74,7 +74,7 @@ const Index: NextPage = () => {
                     <div className="flex space-x-4 items-center">
                         <div className="w-12 h-12 rounded-full bg-slate-400" />
                         <div className="">
-                            <h4 className="text-sm font-bold">니꼬</h4>
+                            <h4 className="text-sm font-bold">몽이</h4>
                             <div className="text flex items-center">
                                 <svg
                                     className="text-yellow-400 h-5 w-5"

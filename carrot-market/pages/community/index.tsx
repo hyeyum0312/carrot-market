@@ -3,7 +3,7 @@ import Layout from "../../components/layout";
 
 const Community: NextPage = () => {
     return (
-        <Layout title="커뮤니티" hasTabBar canGoBack>
+        <Layout title="커뮤니티" hasTabBar>
             <div className="py-16 px-4 space-y-8">
                 {[1, 2, 3, 4, 5, 6].map((_, i) => (
                     <div key={i} className="flex flex-col items-start cursor-pointer">

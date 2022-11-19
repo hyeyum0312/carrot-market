@@ -4,7 +4,7 @@ import Layout from "../../components/layout";
 
 const Index: NextPage = () => {
     return (
-        <Layout title="라이브">
+        <Layout title="라이브" hasTabBar>
             <div className="py-10 px-4 space-y-4 divide-y-2">
                 {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, i) => (
                     <div className="pt-4" key={i}>

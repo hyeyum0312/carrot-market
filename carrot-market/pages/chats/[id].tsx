@@ -3,7 +3,7 @@ import Layout from "../../components/layout";
 
 const ChatDetail: NextPage = () => {
     return (
-        <Layout title="채팅" canGoBack>
+        <Layout canGoBack>
             <div className="py-10 px-4 space-y-4">
                 <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 rounded-full bg-slate-400"/>
