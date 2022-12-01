@@ -3,11 +3,13 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
 }
 
 model User {
@@ -17,5 +19,5 @@ model User {
     name        String
     avatar      String?
     createdAt   DateTime   @default(now())
-    updataAt    DateTime   @updataAt
+    updataAt    DateTime   @updatedAt
 }
