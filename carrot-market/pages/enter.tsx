@@ -1,6 +1,15 @@
 import { useState } from "react";
+import {useForm} from "react-hook-form";
+import {NextPage} from "next";
+import Chats from "./chats";
 
-export default function Enter() {
+interface Enterform {
+    email : string
+    phoneNumber : string
+
+}
+const Enter:NextPage = () =>{
+    const {register} = useForm<Enterform>();
     const [method, setMethod] = useState<"email" | "phone">("email");
     const onEmailClick = () => setMethod("email");
     const onPhoneClick = () => setMethod("phone");
@@ -76,3 +85,4 @@ export default function Enter() {
         </div>
     );
 }
+export default Enter

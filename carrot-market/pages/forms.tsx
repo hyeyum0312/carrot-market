@@ -27,7 +27,6 @@ export default function Forms() {
         setError('error', {message:'오류가 났습니다.'})
         setError('username', {message:'사용중인 이름입니다.'})
         setError('email', {message:'이메일오류입니다.'})
-
     }
     const onInValid = (errors:FieldErrors) => {
         console.log('errors', errors)
