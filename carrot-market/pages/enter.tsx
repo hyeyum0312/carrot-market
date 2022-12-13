@@ -6,7 +6,6 @@ import Chats from "./chats";
 interface Enterform {
     email : string
     phoneNumber : string
-
 }
 const Enter:NextPage = () =>{
     const {register} = useForm<Enterform>();
