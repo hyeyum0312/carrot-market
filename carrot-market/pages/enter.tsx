@@ -23,7 +23,11 @@ const Enter: NextPage = () => {
         setMethod("phone");
     };
     const onValid = (data: EnterForm) => {
-        console.log(data);
+        console.log('EnterForm data',data);
+        fetch("/api/users/enter", {
+            method: 'POST',
+            body: JSON.stringify(data)
+        })
     };
     return (
         <div className="mt-16 px-4">
