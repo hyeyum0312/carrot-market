@@ -1,19 +1,22 @@
-import type { NextPage } from "next";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import type {NextPage} from "next";
+import {useState} from "react";
+import {useForm} from "react-hook-form";
 import Button from "../components/button";
 import Input from "../components/input";
-import { cls } from "../libs/utils";
+import {cls} from "../libs/client/utils";
+import useMutation from "../libs/client/useMutation";
 
 interface EnterForm {
     email?: string;
     phone?: string;
-    required:boolean;
+    required: boolean;
 }
 
 const Enter: NextPage = () => {
-    const { register, handleSubmit, reset } = useForm<EnterForm>();
+    const [enter, {loading, data, error}] = useMutation("/api/users/enter"); // hook으로 부터 array를 받을것이다
+    const {register, handleSubmit, reset} = useForm<EnterForm>();
     const [method, setMethod] = useState<"email" | "phone">("email");
+    const [submiting, setSubmiting] = useState(false)
     const onEmailClick = () => {
         reset();
         setMethod("email");
@@ -23,11 +26,17 @@ const Enter: NextPage = () => {
         setMethod("phone");
     };
     const onValid = (data: EnterForm) => {
-        console.log('EnterForm data',data);
-        fetch("/api/users/enter", {
-            method: 'POST',
-            body: JSON.stringify(data)
-        })
+        enter(data)
+
+        // console.log('EnterForm data',data);
+        // setSubmiting(true);
+        // fetch("/api/users/enter", {
+        //     method: 'POST',
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //         "Content-Type" : "application/json"
+        //     }
+        // }).then(() =>{ setSubmiting(false)})
     };
     return (
         <div className="mt-16 px-4">
@@ -85,15 +94,14 @@ const Enter: NextPage = () => {
                             required
                         />
                     ) : null}
-                    {method === "email" ? <Button text={"Get login link"} /> : null}
+                    {method === "email" ? <Button text={submiting ? "loading" : "Get login link"}/> : null}
                     {method === "phone" ? (
-                        <Button text={"Get one-time password"} />
+                        <Button text={"Get one-time password"}/>
                     ) : null}
                 </form>
-
                 <div className="mt-8">
                     <div className="relative">
-                        <div className="absolute w-full border-t border-gray-300" />
+                        <div className="absolute w-full border-t border-gray-300"/>
                         <div className="relative -top-3 text-center ">
                           <span className="bg-white px-2 text-sm text-gray-500">
                             Or enter with
@@ -108,7 +116,7 @@ const Enter: NextPage = () => {
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                             >
-                                <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
+                                <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/>
                             </svg>
                         </button>
                         <button className="flex justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">

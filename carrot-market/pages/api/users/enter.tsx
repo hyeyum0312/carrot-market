@@ -5,10 +5,15 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ){
-    console.log('req',req.body)
+    //리퀘스트 요청이 post가 아니면 bad request에도 응덥할것이다. get인 경우엔
+    if (req.method !== "POST") {
+        res.status(401).end();
+    }
+    console.log(req.body)
+    console.log(req.body.email)
     res.status(200).end()
 }
-// 어떤 요청이 오든 status는 200을 보낼것임 -> 그 다음 연결을 end 끊는다.
+
 
 
 // 이건 client 연습할때 쓴거
