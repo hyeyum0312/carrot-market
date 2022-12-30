@@ -13,9 +13,9 @@ interface EnterForm {
 }
 
 const Enter: NextPage = () => {
-    const [enter, {loading, data, error}] = useMutation("/api/users/enter"); // hook으로 부터 array를 받을것이다
-    const {register, handleSubmit, reset} = useForm<EnterForm>();
+    const [enter, {loading, data, error}] = useMutation("/api/users/enter");
     const [method, setMethod] = useState<"email" | "phone">("email");
+    const {register, handleSubmit, reset} = useForm<EnterForm>();
     const [submiting, setSubmiting] = useState(false)
     const onEmailClick = () => {
         reset();
@@ -25,19 +25,10 @@ const Enter: NextPage = () => {
         reset();
         setMethod("phone");
     };
-    const onValid = (data: EnterForm) => {
-        enter(data)
-
-        // console.log('EnterForm data',data);
-        // setSubmiting(true);
-        // fetch("/api/users/enter", {
-        //     method: 'POST',
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //         "Content-Type" : "application/json"
-        //     }
-        // }).then(() =>{ setSubmiting(false)})
+    const onValid = (validForm: EnterForm) => {
+        enter(validForm)
     };
+    console.log('loading, data, error',loading, data, error)
     return (
         <div className="mt-16 px-4">
             <h3 className="text-3xl font-bold text-center">Enter to Carrot</h3>

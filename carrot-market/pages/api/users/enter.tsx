@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import client from "../../../libs/client";
+import client from "../../../libs/server/client";
+import withHandler from "../../../libs/server/withHandler";
 
-export default async function handler(
+async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ){
@@ -9,10 +10,11 @@ export default async function handler(
     if (req.method !== "POST") {
         res.status(401).end();
     }
-    console.log(req.body)
-    console.log(req.body.email)
-    res.status(200).end()
+    console.log(req.body);
+    res.json({OK:true});
 }
+
+export default withHandler('POST', handler)
 
 
 

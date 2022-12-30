@@ -1,16 +1,33 @@
-import {useState} from "react";
+import { useState } from "react";
 
-export default function useMutation(url: string): [
-    (data: any) => void,
-    { loading: boolean; data: undefined | any; error: undefined | any }
-] {
-    const [loading, setloading] = useState(false);
-    const [data, setData] = useState<undefined | any>(undefined);
-    const [error, setError] = useState<undefined | any>(undefined);
+interface UseMutationState {
+    loading: boolean;
+    data?: object;
+    error?: object;
+}
+type UseMutationResult = [(data: any) => void, UseMutationState];
 
+export default function useMutation(url: string): UseMutationResult {
+    // 3개의 state를 만드는 대신 아래처럼 작성
+    const [state, setSate] = useState<UseMutationState>({
+        loading: false,
+        data: undefined,
+        error: undefined,
+    });
     function mutation(data: any) {
+        setSate((prev) => ({ ...prev, loading: true }));
 
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json().catch(() => {}))
+            .then((data) => setSate((prev) => ({ ...prev, data })))
+            .catch((error) => setSate((prev) => ({ ...prev, error })))
+            .finally(() => setSate((prev) => ({ ...prev, loading: false })));
     }
-
-    return [mutation, {loading, data, error}]
+    return [mutation, { ...state }];
 }
