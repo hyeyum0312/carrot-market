@@ -6,7 +6,7 @@ async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ){
-    //리퀘스트 요청이 post가 아니면 bad request에도 응덥할것이다. get인 경우엔
+    //리퀘스트 요청이 post가 아니면 bad request에도 응덥할것이다. get인 경우엔 
     if (req.method !== "POST") {
         res.status(401).end();
     }
