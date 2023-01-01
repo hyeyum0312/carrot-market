@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import Layout from "../../components/layout";
+import Layout from "@components/layout";
 const Index: NextPage = () => {
     return (
         <Layout title="나의캐럿" hasTabBar>

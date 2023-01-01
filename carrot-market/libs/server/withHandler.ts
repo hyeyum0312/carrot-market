@@ -1,12 +1,18 @@
-import {NextApiRequest, NextApiResponse} from "next";
-import client from "../../libs/server/client";
-import {apiResolver} from "next/dist/server/api-utils/node";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function withHandler(
-    method : "GET" | "POST" | "DELETE",
-    fn : (req: NextApiRequest, res: NextApiResponse) => void
+export default function withHandler(
+    method: "GET" | "POST" | "DELETE",
+    fn: (req: NextApiRequest, res: NextApiResponse) => void
 ) {
-    return async function (req: NextApiRequest, res: NextApiResponse){
-
+    return async function (req: NextApiRequest, res: NextApiResponse) {
+        if (req.method !== method) {
+            return res.status(405).end();
+        }
+        try {
+            await fn(req, res);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ error });
+        }
     };
 }
