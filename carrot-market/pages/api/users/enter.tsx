@@ -3,23 +3,20 @@ import withHandler from "@libs/server/withHandler";
 import client from "@libs/server/client";
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {phone, email} = req.body;
-    let user;
-    if (email) {
-        user = await client.user.findUnique({
-            where: {
-                email
-            }
-        });
-        if (!user) {
-            console.log('Did not find.Will create')
-            await client.user.create({
-                data: {
-                    name : "Anonymous",
-                    email
-                }
-            })
-        }
-    }
+
+    const user = await client.user.upsert({
+        where: {
+            ...(phone ? {phone: +phone}: ''),
+            ...(email ? {email}: ''),
+        },
+        create: {
+            name: "Anonymous",
+            ...(phone ? {phone: +phone}: ''),
+            ...(email ? {email}: ''),
+        },
+        update: {}
+    })
+    console.log(user)
     console.log(req.body)
     return res.status(200).end();
 }
