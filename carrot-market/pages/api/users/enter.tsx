@@ -1,6 +1,8 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
 import withHandler from "@libs/server/withHandler";
+
 import client from "@libs/server/client";
+
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {phone, email} = req.body;
     const payload = phone ? {phone: +phone} : {email}
