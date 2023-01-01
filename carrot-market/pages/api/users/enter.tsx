@@ -3,16 +3,14 @@ import withHandler from "@libs/server/withHandler";
 import client from "@libs/server/client";
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {phone, email} = req.body;
-
+    const payload = phone ? {phone: +phone} : {email}
     const user = await client.user.upsert({
         where: {
-            ...(phone ? {phone: +phone}: ''),
-            ...(email ? {email}: ''),
+            ...payload
         },
         create: {
             name: "Anonymous",
-            ...(phone ? {phone: +phone}: ''),
-            ...(email ? {email}: ''),
+            ...payload
         },
         update: {}
     })
